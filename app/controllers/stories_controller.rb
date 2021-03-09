@@ -26,6 +26,7 @@ class StoriesController < ApplicationController
 
   # PATCH/PUT /stories/1
   def update
+    
     if @story.update(story_params)
       render json: @story
     else
@@ -46,6 +47,6 @@ class StoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def story_params
-      params.fetch(:story, {})
+      params.require(:story).permit(:user_id, :check_points)
     end
 end
